@@ -22,6 +22,7 @@
 		6BC8AD3A22E5059C00DD15A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC8AD3922E5059C00DD15A3 /* Assets.xcassets */; };
 		6BC8AD3D22E5059C00DD15A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC8AD3C22E5059C00DD15A3 /* Preview Assets.xcassets */; };
 		6BC8AD4B22E5059D00DD15A3 /* Fluent_Vocab_TrainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8AD4A22E5059D00DD15A3 /* Fluent_Vocab_TrainerTests.swift */; };
+		EE765A37FA06EFFE3621E696 /* Pods_Fluent_Vocab_Trainer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B058B830AE6B8268E144F322 /* Pods_Fluent_Vocab_Trainer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		42AE0E3B356CD76C5A3FF5A9 /* Pods-Fluent Vocab Trainer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fluent Vocab Trainer.release.xcconfig"; path = "Target Support Files/Pods-Fluent Vocab Trainer/Pods-Fluent Vocab Trainer.release.xcconfig"; sourceTree = "<group>"; };
 		6B61BE2B22E5066600583EA8 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		6B61BE2D22E5073100583EA8 /* AddWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWord.swift; sourceTree = "<group>"; };
 		6B61BE3022E5078800583EA8 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -54,6 +56,8 @@
 		6BC8AD4622E5059D00DD15A3 /* Fluent Vocab TrainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fluent Vocab TrainerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC8AD4A22E5059D00DD15A3 /* Fluent_Vocab_TrainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fluent_Vocab_TrainerTests.swift; sourceTree = "<group>"; };
 		6BC8AD4C22E5059D00DD15A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5A4690426C99C7B81F63D96 /* Pods-Fluent Vocab Trainer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fluent Vocab Trainer.debug.xcconfig"; path = "Target Support Files/Pods-Fluent Vocab Trainer/Pods-Fluent Vocab Trainer.debug.xcconfig"; sourceTree = "<group>"; };
+		B058B830AE6B8268E144F322 /* Pods_Fluent_Vocab_Trainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fluent_Vocab_Trainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE765A37FA06EFFE3621E696 /* Pods_Fluent_Vocab_Trainer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +139,8 @@
 				6BC8AD3222E5059B00DD15A3 /* Fluent Vocab Trainer */,
 				6BC8AD4922E5059D00DD15A3 /* Fluent Vocab TrainerTests */,
 				6BC8AD3122E5059B00DD15A3 /* Products */,
+				D1EEEC12CCD0230F2DE2ABB1 /* Pods */,
+				FE48A48AF15FD580EE75CD77 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +186,24 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D1EEEC12CCD0230F2DE2ABB1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A5A4690426C99C7B81F63D96 /* Pods-Fluent Vocab Trainer.debug.xcconfig */,
+				42AE0E3B356CD76C5A3FF5A9 /* Pods-Fluent Vocab Trainer.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FE48A48AF15FD580EE75CD77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B058B830AE6B8268E144F322 /* Pods_Fluent_Vocab_Trainer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,9 +211,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BC8AD4F22E5059D00DD15A3 /* Build configuration list for PBXNativeTarget "Fluent Vocab Trainer" */;
 			buildPhases = (
+				55E8C81DDF853E693876ECFE /* [CP] Check Pods Manifest.lock */,
 				6BC8AD2C22E5059B00DD15A3 /* Sources */,
 				6BC8AD2D22E5059B00DD15A3 /* Frameworks */,
 				6BC8AD2E22E5059B00DD15A3 /* Resources */,
+				FEAE31A8311205CE27751AA3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -273,6 +300,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		55E8C81DDF853E693876ECFE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fluent Vocab Trainer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEAE31A8311205CE27751AA3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fluent Vocab Trainer/Pods-Fluent Vocab Trainer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fluent Vocab Trainer/Pods-Fluent Vocab Trainer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fluent Vocab Trainer/Pods-Fluent Vocab Trainer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6BC8AD2C22E5059B00DD15A3 /* Sources */ = {
@@ -429,6 +498,7 @@
 		};
 		6BC8AD5022E5059D00DD15A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5A4690426C99C7B81F63D96 /* Pods-Fluent Vocab Trainer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -449,6 +519,7 @@
 		};
 		6BC8AD5122E5059D00DD15A3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42AE0E3B356CD76C5A3FF5A9 /* Pods-Fluent Vocab Trainer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

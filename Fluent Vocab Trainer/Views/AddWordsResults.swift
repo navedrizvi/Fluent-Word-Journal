@@ -7,9 +7,10 @@
 //
 
 import SwiftUI
+import SwiftyJSON
 
 struct AddWordsResults : View {
-
+    
     @State var networkManager = NetworkManager()
     
     var body: some View {
@@ -18,19 +19,25 @@ struct AddWordsResults : View {
                 networkManager.manyDefinitions.identified(by: \.word)
             ) { manyDefinitions in
                 WordRowView(word: manyDefinitions)
-                
             }.navigationBarTitle(Text("Words"))
         }
     }
 }
 
 struct WordRowView: View {
-    let word: Response
+    let word: Word
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text(word.word)
-            Text(word.wordnikUrl)
+            if word.word != nil {
+                Text(word.word!)
+            }
+            if word.wordnikUrl != nil {
+                Text(word.wordnikUrl!)
+            }
+            
+
+//            Text(word.exampleUses)
         }
     }
 }
