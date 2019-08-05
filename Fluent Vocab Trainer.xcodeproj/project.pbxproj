@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B182B5322ECE644009BF84B /* String-CapitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B182B5222ECE644009BF84B /* String-CapitalizeFirst.swift */; };
 		6B61BE2C22E5066600583EA8 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B61BE2B22E5066600583EA8 /* Word.swift */; };
 		6B61BE2E22E5073100583EA8 /* AddWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B61BE2D22E5073100583EA8 /* AddWord.swift */; };
 		6B61BE3122E5078800583EA8 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B61BE3022E5078800583EA8 /* MenuView.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		42AE0E3B356CD76C5A3FF5A9 /* Pods-Fluent Vocab Trainer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fluent Vocab Trainer.release.xcconfig"; path = "Target Support Files/Pods-Fluent Vocab Trainer/Pods-Fluent Vocab Trainer.release.xcconfig"; sourceTree = "<group>"; };
+		6B182B5222ECE644009BF84B /* String-CapitalizeFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-CapitalizeFirst.swift"; sourceTree = "<group>"; };
 		6B61BE2B22E5066600583EA8 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		6B61BE2D22E5073100583EA8 /* AddWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWord.swift; sourceTree = "<group>"; };
 		6B61BE3022E5078800583EA8 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B182B5122ECE626009BF84B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6B182B5222ECE644009BF84B /* String-CapitalizeFirst.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		6B61BE2822E5060600583EA8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +189,7 @@
 		6BC8AD5522E505A300DD15A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6B182B5122ECE626009BF84B /* Extensions */,
 				6B61BE7322E50F4100583EA8 /* Config */,
 				6BC8AD3322E5059B00DD15A3 /* AppDelegate.swift */,
 				6BC8AD3522E5059B00DD15A3 /* SceneDelegate.swift */,
@@ -192,7 +203,6 @@
 				A5A4690426C99C7B81F63D96 /* Pods-Fluent Vocab Trainer.debug.xcconfig */,
 				42AE0E3B356CD76C5A3FF5A9 /* Pods-Fluent Vocab Trainer.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -351,6 +361,7 @@
 				6B61BE3322E507A900583EA8 /* TopBar.swift in Sources */,
 				6B61BE3522E507F200583EA8 /* Profile.swift in Sources */,
 				6B61BE2E22E5073100583EA8 /* AddWord.swift in Sources */,
+				6B182B5322ECE644009BF84B /* String-CapitalizeFirst.swift in Sources */,
 				6B61BE7522E50F5300583EA8 /* DataService.swift in Sources */,
 				6B61BE3122E5078800583EA8 /* MenuView.swift in Sources */,
 				6BC8AD3422E5059B00DD15A3 /* AppDelegate.swift in Sources */,

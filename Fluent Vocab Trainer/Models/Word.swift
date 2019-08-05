@@ -10,20 +10,27 @@ import Foundation
 import SwiftUI
 import SwiftyJSON
 
-struct Word: Decodable {
-    var word: String?
+class Word {
+    var title: String?
     var wordnikUrl: String?
     var text: String?
     var partOfSpeech: String?
     var exampleUses: JSON?
+    var dateAdded: String //compute this
     
-    var dateAdded: Date //compute this
+    init() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        dateAdded = formatter.string(from: date)
+    }
     
     func getExample() -> String? {
         let example = self.exampleUses?["text"].stringValue
         return example ?? nil
     }
 }
+
 
 struct Response: Decodable {
     var word: String?

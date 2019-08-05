@@ -16,7 +16,7 @@ struct AddWordsResults : View {
     var body: some View {
         NavigationView {
             List (
-                networkManager.manyDefinitions.identified(by: \.word)
+                networkManager.manyDefinitions.identified(by: \.title)
             ) { manyDefinitions in
                 WordRowView(word: manyDefinitions)
             }.navigationBarTitle(Text("Words"))
@@ -29,8 +29,8 @@ struct WordRowView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            if word.word != nil {
-                Text(word.word!)
+            if word.title != nil {
+                Text(word.title!)
             }
             if word.wordnikUrl != nil {
                 Text(word.wordnikUrl!)

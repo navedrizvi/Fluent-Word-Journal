@@ -22,8 +22,7 @@ class NetworkManager: BindableObject {
         }
     }
     
-    init() {//url: String) {
-//        let urlStr = "https://api.wordnik.com/v4/\(word).json/word/definitions?api_key=\(WordnikConfig.apiKey)"
+    init() {
         let urlStr = "https://api.wordnik.com/v4/word.json/lit/definitions?api_key=\(WordnikConfig.apiKey)"
         guard let url = URL(string: urlStr) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, err) in
@@ -42,8 +41,17 @@ class NetworkManager: BindableObject {
     }
 }
 
+func makeWord() {
+    let networkManager = NetworkManager()
+    print(networkManager.manyDefinitions)
+}
+
+func addToFirebase() {
+    
+}
+
 //func makeWord(results: [Response]) -> Word {
-//    
+//
 //    return word
 //}
 
