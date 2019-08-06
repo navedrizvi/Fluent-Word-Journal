@@ -184,3 +184,18 @@ func removeCharacters(word: String) -> String {
     return String(word.unicodeScalars.filter({ CharacterSet.letters.contains($0) }))
 }
 
+
+
+struct APIView: View {
+    var body: some View {
+        Text("Hello World")
+    }
+}
+
+#if DEBUG
+struct APIView_Previews: PreviewProvider {
+    static var previews: some View {
+        APIView()
+    }
+}
+#endif
