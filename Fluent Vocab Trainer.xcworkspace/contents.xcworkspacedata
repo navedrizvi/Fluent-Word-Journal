@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:FetchingData.playground">
+   </FileRef>
+   <FileRef
       location = "group:Fluent Vocab Trainer.xcodeproj">
    </FileRef>
    <FileRef
