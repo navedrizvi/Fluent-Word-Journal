@@ -24,13 +24,18 @@ struct AddWordsResults : View {
 ////            }
 //            .navigationBarTitle(Text("Words"))
 //        }
-        Text("hii")
+        VStack{
+            WordRowView(word:"new")
+            Text("hii")
+        }
+
     }
 }
 
 struct WordRowView: View {
-    let word: Word
-    
+//    let word: Word
+    let word: String
+
     var body: some View {
 //        VStack (alignment: .leading) {
 ////            if word.title != nil {

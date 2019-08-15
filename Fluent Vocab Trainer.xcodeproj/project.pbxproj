@@ -21,6 +21,7 @@
 		6B61BE7522E50F5300583EA8 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B61BE7422E50F5300583EA8 /* DataService.swift */; };
 		6B67D8C322F923D50057D531 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B67D8C222F923D50057D531 /* Response.swift */; };
 		6B67D8C522F953890057D531 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B67D8C422F953890057D531 /* GoogleService-Info.plist */; };
+		6BC096DE22FA6B3F0066C3F2 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC096DD22FA6B3F0066C3F2 /* Login.swift */; };
 		6BC8AD3422E5059B00DD15A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8AD3322E5059B00DD15A3 /* AppDelegate.swift */; };
 		6BC8AD3622E5059B00DD15A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8AD3522E5059B00DD15A3 /* SceneDelegate.swift */; };
 		6BC8AD3A22E5059C00DD15A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC8AD3922E5059C00DD15A3 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		6B61BE7422E50F5300583EA8 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		6B67D8C222F923D50057D531 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		6B67D8C422F953890057D531 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6BC096DD22FA6B3F0066C3F2 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		6BC8AD3022E5059B00DD15A3 /* Fluent Vocab Trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fluent Vocab Trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC8AD3322E5059B00DD15A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BC8AD3522E5059B00DD15A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				6B61BE3A22E508DC00583EA8 /* Goals.swift */,
 				6B61BE3E22E5096200583EA8 /* Practice.swift */,
 				6B61BE7122E50E8500583EA8 /* WordView.swift */,
+				6BC096DD22FA6B3F0066C3F2 /* Login.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				6B182B5322ECE644009BF84B /* String-CapitalizeFirst.swift in Sources */,
 				6B61BE7522E50F5300583EA8 /* DataService.swift in Sources */,
 				6B61BE3122E5078800583EA8 /* MenuView.swift in Sources */,
+				6BC096DE22FA6B3F0066C3F2 /* Login.swift in Sources */,
 				6B67D8C322F923D50057D531 /* Response.swift in Sources */,
 				6BC8AD3422E5059B00DD15A3 /* AppDelegate.swift in Sources */,
 				6B61BE2C22E5066600583EA8 /* Word.swift in Sources */,
