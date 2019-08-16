@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Profile : View {
+struct Progress : View {
     var body: some View {
         VStack {
             TopBar()
@@ -20,7 +20,7 @@ struct Profile : View {
 #if DEBUG
 struct Account_Previews : PreviewProvider {
     static var previews: some View {
-        Profile()
+        Progress()
     }
 }
 #endif
