@@ -7,6 +7,6 @@ target 'Fluent Vocab Trainer' do
     pod 'Firebase/Firestore'
     pod 'Firebase/Auth'
     pod 'FirebaseUI'
-    pod 'FirebaseUI/Auth'
-    pod 'FirebaseUI/Google'
+#    pod 'FirebaseUI/Auth'
+#    pod 'FirebaseUI/Google'
 end

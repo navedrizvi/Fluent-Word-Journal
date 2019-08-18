@@ -7,5 +7,5 @@
 //
 
 struct WordnikConfig {
-    static let apiKey = "338594680ac207c490101039b7506831a1d44fecb79bec7ec"
+    static let apiKey = "338594680ac207c490101039b7506831a1d44fecb79bec7ec" //insert wordnik API key here
 }

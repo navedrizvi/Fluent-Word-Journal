@@ -10,8 +10,21 @@ import SwiftUI
 
 struct Journal : View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
-    }
+//        NavigationView {
+//            ZStack(alignment: .topLeading) {
+//                VStack {
+                    NavigationView {
+                        List {
+                            Text("hee")
+                            Text("yooo")
+                        }
+                        Spacer()
+                        MenuView()
+                    }
+                }
+//            }
+//        }
+//    }
 }
 
 #if DEBUG

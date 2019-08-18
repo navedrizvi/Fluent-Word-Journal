@@ -10,9 +10,10 @@ import SwiftUI
 
 struct Progress : View {
     var body: some View {
-        VStack {
-            TopBar()
-            Spacer()
+    NavigationView {
+            VStack {
+                TopBar()
+            }
         }
     }
 }

@@ -11,24 +11,25 @@ import SwiftUI
 struct AddWords : View {
     @State var wordInput: String = ""
     var body: some View {
-        VStack {
-            TopBar()
-            Spacer()
-            TextField($wordInput)
-            .frame(width: 350, height: 500)
-            .border(Color.purple, width: 2, cornerRadius: 15)
-//            Spacer()
-            Button(action: {
-                // Closure will be called once user taps your button
-                print(self.$wordInput)
-            }) {
-//                Spacer()
-                SubmitButton()
-                Spacer()
-            }
-            Spacer()
-            MenuView()
+        NavigationView {
+                    VStack {
+                        TopBar()
+                        Spacer()
+                        TextField("Enter words to learn...", text: $wordInput)
+            //            .frame(width: CGFloat(350), height: CGFloat(500))
+            //            .border(Color.purple, width: CGFloat(2), cornerRadius: CGFLoat(15))
+            //            Spacer()
+                        Button(action: {
+                            print(self.$wordInput)
+                        }) {
+                            SubmitButton()
+                            Spacer()
+                        }
+                        Spacer()
+                        MenuView()
+                    }
         }
+
         
 //        VStack {
 //            TopBar()
@@ -51,28 +52,19 @@ struct AddWords : View {
     }
     
     private func endEditing(_ force: Bool) {
-UIApplication.shared.keyWindow?.endEditing(force)
+        UIApplication.shared.keyWindow?.endEditing(force)
     }
 }
 
 struct SubmitButton : View {
     var body: some View {
-        return PresentationLink(destination: AddWordsResults()) {
-            HStack {
-                Text("Submit")
-                    .fontWeight(.heavy)
-                    .foregroundColor(Color.white)
-                    .padding()
-                
-            }
-                .frame(width: 350)
-                .background(Color.purple, cornerRadius: 15)
-                .border(Color.purple)
-
-
-        }
-
-
+        Text("Submit")
+            .fontWeight(.heavy)
+            .foregroundColor(Color.white)
+            .padding()
+            .frame(width: 350)
+            .background(Color.purple, cornerRadius: 15)
+            .border(Color.purple)
     }
 }
 
