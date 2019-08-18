@@ -10,21 +10,11 @@ import SwiftUI
 
 struct Journal : View {
     var body: some View {
-//        NavigationView {
-//            ZStack(alignment: .topLeading) {
-//                VStack {
-                    NavigationView {
-                        List {
-                            Text("hee")
-                            Text("yooo")
-                        }
-                        Spacer()
-                        MenuView()
-                    }
-                }
-//            }
-//        }
-//    }
+            List {
+                Text("hee")
+                Text("yooo")
+        }
+    }
 }
 
 #if DEBUG

@@ -9,15 +9,17 @@ import UIKit
 import SwiftUI
 
 struct AddWords : View {
+    
     @State var wordInput: String = ""
     var body: some View {
-        NavigationView {
                     VStack {
-                        TopBar()
-                        Spacer()
                         TextField("Enter words to learn...", text: $wordInput)
-            //            .frame(width: CGFloat(350), height: CGFloat(500))
-            //            .border(Color.purple, width: CGFloat(2), cornerRadius: CGFLoat(15))
+                        .frame(minWidth: 0, maxWidth: 200, minHeight: 0, maxHeight: 200)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+//                        .textFieldStyle(.frame(minWidth: 0, maxWidth: 200, minHeight: 0, maxHeight: 200), RoundedBorderTextFieldStyle())
+                        
+//                        .border(Color.purple, width: CGFloat(2), cornerRadius: CGFLoat(15))
             //            Spacer()
                         Button(action: {
                             print(self.$wordInput)
@@ -25,30 +27,7 @@ struct AddWords : View {
                             SubmitButton()
                             Spacer()
                         }
-                        Spacer()
-                        MenuView()
                     }
-        }
-
-        
-//        VStack {
-//            TopBar()
-//
-//            Text("ADD WORDS")
-//
-//            // Spacer()
-//            TextField(.constant(""), placeholder: Text("Enter one or many words...")) {
-//
-//            }
-//            .multilineTextAlignment(.leading)
-//                .frame(height: 400)
-//                .textFieldStyle(.roundedBorder)
-//            NavigationView {
-//
-//                SubmitButton()
-//                Spacer()
-//            }
-//        }
     }
     
     private func endEditing(_ force: Bool) {

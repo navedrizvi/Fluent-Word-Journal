@@ -1,27 +1,26 @@
 //
-//  Account.swift
-//  Vocabulary Trainer
+//  Progress.swift
+//  Fluent Vocab Trainer
 //
-//  Created by Naved Rizvi on 7/7/19.
+//  Created by Naved Rizvi on 8/18/19.
 //  Copyright © 2019 Naved Rizvi. All rights reserved.
 //
 
 import SwiftUI
 
-struct Progress : View {
+struct UserProgress : View {
     var body: some View {
-    NavigationView {
             VStack {
-                TopBar()
+                Text("yooo")
+                Spacer()
             }
-        }
     }
 }
 
 #if DEBUG
-struct Account_Previews : PreviewProvider {
+struct UserProgress_Previews: PreviewProvider {
     static var previews: some View {
-        Progress()
+        UserProgress()
     }
 }
 #endif
