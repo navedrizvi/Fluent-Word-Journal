@@ -13,7 +13,7 @@ struct TopBar : View {
         Rectangle()
             .foregroundColor(Color.purple)
             .edgesIgnoringSafeArea(.top)
-            .frame(maxHeight: 40)
+            .frame(maxHeight: 60)
 //            .shadow(color: Color.purple, radius: 30, x: 0, y: 20)
 //            .shadow(color: Color(hue: 0.68, saturation: 0.0, brightness: 0.0, opacity: 0.15), radius: 50, x: 0, y: 0)
     }

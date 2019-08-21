@@ -12,22 +12,17 @@ struct AddWords : View {
     
     @State var wordInput: String = ""
     var body: some View {
-                    VStack {
-                        TextField("Enter words to learn...", text: $wordInput)
-                        .frame(minWidth: 0, maxWidth: 200, minHeight: 0, maxHeight: 200)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-//                        .textFieldStyle(.frame(minWidth: 0, maxWidth: 200, minHeight: 0, maxHeight: 200), RoundedBorderTextFieldStyle())
-                        
-//                        .border(Color.purple, width: CGFloat(2), cornerRadius: CGFLoat(15))
-            //            Spacer()
-                        Button(action: {
-                            print(self.$wordInput)
-                        }) {
-                            SubmitButton()
-                            Spacer()
-                        }
-                    }
+        VStack {
+            TextField("Enter words to learn...", text: $wordInput)
+                .frame(minWidth: 0, maxWidth: 200, minHeight: 0, maxHeight: 200)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Button(action: {
+                print(self.$wordInput)
+            }) {
+                SubmitButton()
+                Spacer()
+            }
+        }
     }
     
     private func endEditing(_ force: Bool) {
@@ -41,9 +36,10 @@ struct SubmitButton : View {
             .fontWeight(.heavy)
             .foregroundColor(Color.white)
             .padding()
-            .frame(width: 350)
-            .background(Color.purple, cornerRadius: 15)
+            .frame(width: 250)
+            .background(Color.purple)
             .border(Color.purple)
+            .cornerRadius(15)
     }
 }
 

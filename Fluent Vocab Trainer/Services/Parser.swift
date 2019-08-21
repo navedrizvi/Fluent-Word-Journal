@@ -13,7 +13,7 @@ import SwiftyJSON
 
 class NetworkManager: ObservableObject {
     
-    var didChange = PassthroughSubject<NetworkManager, Never>()
+     var didChange = PassthroughSubject<NetworkManager, Never>()
     
     var manyDefinitions = [Response]() {
         didSet {
