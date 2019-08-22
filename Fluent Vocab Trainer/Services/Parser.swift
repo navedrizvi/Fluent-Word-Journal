@@ -13,7 +13,7 @@ import SwiftyJSON
 
 class NetworkManager: ObservableObject {
     
-     var didChange = PassthroughSubject<NetworkManager, Never>()
+    var didChange = PassthroughSubject<NetworkManager, Never>()
     
     var manyDefinitions = [Response]() {
         didSet {
@@ -58,16 +58,26 @@ func getResponse(word: String)->[Response]? {
     
     return responses
 }
+//
+enum ResponseError: Error {
+    case wordNotFound
+    case noResults
+}
 
-func wordMaker(word input:String)-> Word?{
+func wordMaker(word input:String) throws -> Word {
     guard let response = getResponse(word: input) else {
-        print("could not find word")
-        return nil
+        throw ResponseError.wordNotFound
     }
     
-    //Process response arrat to single word
+    //Process response array to single word
     let wordAdded = input.capitalizingFirstLetter() //from string extension
-    let wordUrl = response[0].wordnikUrl! // MARK: error catching here - return a tuple with words, string for words added, and words failed - please check word or try at a later time, with fewer words., or return the words that caused the crash
+
+    if response.count == 0 {
+        throw ResponseError.noResults
+    }
+    
+    let wordUrl = response[0].wordnikUrl!
+    
     let responseSlice = response.prefix(10) //consider top 10 responses
     
     //Add defifinitions
@@ -114,24 +124,44 @@ func wordMaker(word input:String)-> Word?{
     return word
 }
 
-func makeWords(userInput: String) -> [Word] {
+extension Array {
+    subscript (safe index: Int) -> Element? {
+        return indices ~= index ? self[index] : nil
+    }
+}
+
+func makeWords(userInput: String) -> ([Word], [String], [String]) {
+    
     var wordsArr = [Word]()
+    var successes = [String]()
+    var failures = [String]()
+    
     //user input processing
     let inputArr = rawToArray(str: userInput)
-    print(inputArr)
+    
     for input in inputArr {
-        let word = wordMaker(word: input)
-        guard let wordSearched = word else { continue }
-        wordsArr.append(wordSearched) //if word is found
+        do {
+            let word  = try wordMaker(word: input)
+//            guard let wordSearched = word else { continue }
+            successes.append(input)
+            wordsArr.append(word) //if word is found
+        } catch let error as NSError{
+            print("Error: \(error)")
+            failures.append(input)
+            continue
+        }
     }
-    return wordsArr
+    successes = successes.map {$0.capitalizingFirstLetter()}
+    failures = failures.map {$0.capitalizingFirstLetter()}
+    
+    return (wordsArr, successes, failures)
 }
 
 //helpers
 func rawToArray(str: String) -> [String] {
-    var arr = str.components(separatedBy: "\n") //seperate by newline
-    arr = str.components(separatedBy: " ") //seperate by space
-    arr = str.components(separatedBy: ",") //seperate by comma
+    var filteredStr = str.replacingOccurrences(of: " ", with: ",")
+    filteredStr = filteredStr.replacingOccurrences(of: "\n", with: ",")
+    var arr = filteredStr.components(separatedBy: ",") //seperate by newline
     arr = arr.filter {$0 != ""} //remove empty strings
     arr = arr.map { removeCharacters(word: $0) }//To filter out letters (removing commas), mapped to each element in array
     return arr

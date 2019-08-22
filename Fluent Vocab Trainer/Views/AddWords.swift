@@ -11,46 +11,64 @@ import Firebase
 
 struct AddWords : View {
     
-    @State var wordInput: String = ""
+    @State private var wordInput: String = ""
     
     var body: some View {
         NavigationView {
-        VStack {
-            TextField("Enter words to learn...", text: $wordInput)
-                .frame(minWidth: 0, maxWidth: 200, minHeight: 0, maxHeight: 200)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            Button(action: {
-//                print(self.$wordInput)
-//                print(self.wordInput)
-                let words = makeWords(userInput: self.wordInput)
-                addToFireStore(words: words)
-            }) {
-                            NavigationLink(destination: AddWordsResults())    {
-                SubmitButton()
-                Spacer()
+            VStack {
+                TextField("Enter words...", text: $wordInput)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                SubmitButton(wordInput: $wordInput) //passing the input state on submit
             }
-            }
-            
-        }
-    }
+        }.navigationBarTitle("Results")
     }
     
 }
 
 struct SubmitButton : View {
+    @Binding var wordInput: String
+    @State var showingAlert = false
+    @State var successWords = [String]()
+    @State var failedWords = [String]()
     var body: some View {
-        Text("Submit")
-            .fontWeight(.heavy)
-            .foregroundColor(Color.white)
-            .padding()
-            .frame(width: 250)
-            .background(Color.purple)
-            .border(Color.purple)
-            .cornerRadius(15)
+        Button(action: {
+            let (words, successes, failures) = makeWords(userInput: self.wordInput)
+            self.successWords = successes
+            self.failedWords = failures
+            addToFireStore(words: words)
+            self.showingAlert = true
+            self.wordInput = ""
+        }) {
+            Text("Submit")
+                .fontWeight(.heavy)
+                .foregroundColor(Color.white)
+                .padding()
+                .frame(width: 250)
+                .background(Color.purple)
+                .border(Color.purple)
+                .cornerRadius(15)
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Results"), message: AlertMessage(wordsFound: successWords, wordsNotFound: failedWords), dismissButton: .default(Text("Dismiss")))
+        }
     }
 }
 
+fileprivate func AlertMessage(wordsFound success:[String], wordsNotFound fail:[String]) -> Text {
+    var messageString = "\nSucessfully added:\n\n"
+    for word in success {
+        messageString += "\(word)\n"
+    }
+    if !fail.isEmpty{
+        messageString += "\nCould not find:\n\n"
+        for word in fail {
+            messageString += "\(word)\n"
+        }
+    }
+    
+    return Text(messageString).fontWeight(.regular)
+    
+}
 
 #if DEBUG
 struct AddWords_Previews : PreviewProvider {

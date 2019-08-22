@@ -28,9 +28,9 @@ func addToFireStore(words: [Word]) {
     
     let docRef = db.collection("words").document(uid)
     docRef.getDocument(completion: { (document, error) in
-        if let document = document {
+//        if let document = document {
 //            if document.exists{
-                db.collection("words").document(uid).setData([ "words": words], merge: true) { err in
+            db.collection("words").document(uid).setData([ "words": words], merge: true) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {
@@ -39,7 +39,6 @@ func addToFireStore(words: [Word]) {
                 }
 //            } else {
 //                db.collection("words").document(uid).setData([
-//                    "userID": uid,
 //                    "words": words,
 //                ]) { err in
 //                    if let err = err {
@@ -49,12 +48,6 @@ func addToFireStore(words: [Word]) {
 //                    }
 //                }
 //            }
-        }
+//        }
     })
-}
-
-func main() {
-    let userInput = "new,\nold\nphilosophy,"
-    let words = makeWords(userInput: userInput)
-    addToFireStore(words: words)
 }
