@@ -7,27 +7,35 @@
 //
 import UIKit
 import SwiftUI
+import Firebase
 
 struct AddWords : View {
     
     @State var wordInput: String = ""
+    
     var body: some View {
+        NavigationView {
         VStack {
             TextField("Enter words to learn...", text: $wordInput)
                 .frame(minWidth: 0, maxWidth: 200, minHeight: 0, maxHeight: 200)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+
             Button(action: {
-                print(self.$wordInput)
+//                print(self.$wordInput)
+//                print(self.wordInput)
+                let words = makeWords(userInput: self.wordInput)
+                addToFireStore(words: words)
             }) {
+                            NavigationLink(destination: AddWordsResults())    {
                 SubmitButton()
                 Spacer()
             }
+            }
+            
         }
     }
-    
-    private func endEditing(_ force: Bool) {
-        UIApplication.shared.keyWindow?.endEditing(force)
     }
+    
 }
 
 struct SubmitButton : View {

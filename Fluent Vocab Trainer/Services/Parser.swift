@@ -67,8 +67,7 @@ func wordMaker(word input:String)-> Word?{
     
     //Process response arrat to single word
     let wordAdded = input.capitalizingFirstLetter() //from string extension
-    let wordUrl = response[0].wordnikUrl!
-    
+    let wordUrl = response[0].wordnikUrl! // MARK: error catching here - return a tuple with words, string for words added, and words failed - please check word or try at a later time, with fewer words., or return the words that caused the crash
     let responseSlice = response.prefix(10) //consider top 10 responses
     
     //Add defifinitions
@@ -119,8 +118,8 @@ func makeWords(userInput: String) -> [Word] {
     var wordsArr = [Word]()
     //user input processing
     let inputArr = rawToArray(str: userInput)
-    let filteredArr = inputArr.map { removeCharacters(word: $0) }//To filter out letters (removing commas), mapped to each element in array
-    for input in filteredArr {
+    print(inputArr)
+    for input in inputArr {
         let word = wordMaker(word: input)
         guard let wordSearched = word else { continue }
         wordsArr.append(wordSearched) //if word is found
@@ -131,7 +130,10 @@ func makeWords(userInput: String) -> [Word] {
 //helpers
 func rawToArray(str: String) -> [String] {
     var arr = str.components(separatedBy: "\n") //seperate by newline
+    arr = str.components(separatedBy: " ") //seperate by space
+    arr = str.components(separatedBy: ",") //seperate by comma
     arr = arr.filter {$0 != ""} //remove empty strings
+    arr = arr.map { removeCharacters(word: $0) }//To filter out letters (removing commas), mapped to each element in array
     return arr
 }
 

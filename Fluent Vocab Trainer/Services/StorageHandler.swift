@@ -22,29 +22,33 @@ func addToFireStore(words: [Word]) {
     if let user = user {
         uid = user.uid
     }
-    let docRef = db.collection("userData").document(uid)
+    
+    //convert words to string dictionary and stores in firebase
+    let words = words.map {$0.toDict()}
+    
+    let docRef = db.collection("words").document(uid)
     docRef.getDocument(completion: { (document, error) in
         if let document = document {
-            if document.exists{
-                db.collection("userData").document(uid).setData([ "words": words], merge: true) { err in
+//            if document.exists{
+                db.collection("words").document(uid).setData([ "words": words], merge: true) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {
                         print("Document updated with ID: \(uid)")
                     }
                 }
-            } else {
-                db.collection("userData").document(uid).setData([
-                    "userID": uid,
-                    "words": words,
-                ]) { err in
-                    if let err = err {
-                        print("Error adding document: \(err)")
-                    } else {
-                        print("Document added with ID: \(uid)")
-                    }
-                }
-            }
+//            } else {
+//                db.collection("words").document(uid).setData([
+//                    "userID": uid,
+//                    "words": words,
+//                ]) { err in
+//                    if let err = err {
+//                        print("Error adding document: \(err)")
+//                    } else {
+//                        print("Document added with ID: \(uid)")
+//                    }
+//                }
+//            }
         }
     })
 }

@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import SwiftyJSON
 
-class Word {
+class Word: Codable {
     var title: String
     var wordnikUrl: String
     var definitions: [String] //with 5 values
@@ -28,5 +28,31 @@ class Word {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         dateAdded = formatter.string(from: date)
+    }
+    
+    public func toJson() -> Data {
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(self)
+        
+        return jsonData
+    }
+    
+    public func toString() -> String {
+        let jsonData = self.toJson()
+        let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
+        
+        return jsonString
+    }
+    
+    public func toDict() -> [String:[String]] {
+        var dict: [String: [String]] = [:]
+        dict["title"] = [self.title]
+        dict["wordnikUrl"] = [self.wordnikUrl]
+        dict["definitions"] = self.definitions
+        dict["partsOfSpeech"] = self.partsOfSpeech
+        dict["examples"] = self.examples
+        dict["dateAdded"] = [self.dateAdded]
+        
+        return dict
     }
 }

@@ -13,20 +13,19 @@ struct MenuView : View {
     var body: some View {
         VStack {
             TopBar()
-            NavigationView {
                 TabView {
-                    Journal()
-                        .tabItem {
-                            VStack {
-                                Image(systemName: "book.fill")
-                                Text("Journal")
-                            }
-                    }.tag(0)
                     AddWords()
                         .tabItem {
                             VStack {
                                 Image(systemName: "plus.circle.fill")
                                 Text("Add")
+                            }
+                    }.tag(0)
+                    Journal()
+                        .tabItem {
+                            VStack {
+                                Image(systemName: "book.fill")
+                                Text("Journal")
                             }
                     }.tag(1)
                     UserProgress()
@@ -38,7 +37,6 @@ struct MenuView : View {
                     }.tag(2)
                 }
                 .accentColor(Color.purple)
-            }
         }
         
     }
