@@ -39,8 +39,6 @@ class NetworkManager: ObservableObject {
     }
 }
 
-
-
 func getResponse(word: String)->[Response]? {
     let word = word.lowercased()
     let urlStr = "https://api.wordnik.com/v4/word.json/\(word)/definitions?api_key=\(WordnikConfig.apiKey)"
@@ -58,7 +56,7 @@ func getResponse(word: String)->[Response]? {
     
     return responses
 }
-//
+
 enum ResponseError: Error {
     case wordNotFound
     case noResults
@@ -119,7 +117,12 @@ func wordMaker(word input:String) throws -> Word {
         }
     }
     
-    let word = Word(word: wordAdded, url: wordUrl, fiveDefinitions: wordDefinitions, partsOfSpeech: Array(partsOfSpeech), exampleUses: exampleUses)
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd.MM.yyyy"
+    let dateAdded = formatter.string(from: date)
+
+    let word = Word(title: wordAdded, url: wordUrl, fiveDefinitions: wordDefinitions, partsOfSpeech: Array(partsOfSpeech), examples: exampleUses, date: dateAdded)
     
     return word
 }
@@ -142,7 +145,6 @@ func makeWords(userInput: String) -> ([Word], [String], [String]) {
     for input in inputArr {
         do {
             let word  = try wordMaker(word: input)
-//            guard let wordSearched = word else { continue }
             successes.append(input)
             wordsArr.append(word) //if word is found
         } catch let error as NSError{

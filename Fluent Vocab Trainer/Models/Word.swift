@@ -10,7 +10,8 @@ import Foundation
 import SwiftUI
 import SwiftyJSON
 
-class Word: Codable {
+class Word: Codable, Identifiable { 
+    var id = UUID()
     var title: String
     var wordnikUrl: String
     var definitions: [String] //with 5 values
@@ -18,16 +19,13 @@ class Word: Codable {
     var examples: [String]
     var dateAdded: String
     
-    init(word: String, url: String, fiveDefinitions defs: [String], partsOfSpeech pos: [String], exampleUses: [String]) {
+    init(title word: String, url: String, fiveDefinitions defs: [String], partsOfSpeech pos: [String], examples exampleUses: [String], date dateAdded: String) {
         title = word
         wordnikUrl = url
         definitions = defs
         partsOfSpeech = pos
         examples = exampleUses
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        dateAdded = formatter.string(from: date)
+        self.dateAdded = dateAdded
     }
     
     public func toJson() -> Data {

@@ -15,7 +15,7 @@ struct Response: Decodable {
     var wordnikUrl: String?
     var text: String?
     var partOfSpeech: String?
-    var exampleUses: JSON?
+    var exampleUses: JSON? //server is ambiguous here
     
     init(json: [String: Any]) {
         word = json["word"] as? String ?? nil

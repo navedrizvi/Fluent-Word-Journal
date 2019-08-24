@@ -7,20 +7,33 @@
 //
 
 import SwiftUI
+import Combine
 
 struct Journal : View {
+//    @EnvironmentObject var wordStore: WordStore
+//    @ObservedObject var wordStore: WordStore
+    
+    @State public var words: [Word]
+    
     var body: some View {
-            List {
-                Text("hee")
-                Text("yooo")
-        }
+        NavigationView {
+            List (words) { word in
+                Text(word.title)
+            }
+        }.onAppear(perform: fetch)
+    }
+    
+    private func fetch() {
+        guard let words = getFromFireStore() else {return}
+        print(words)
+        self.words = words
     }
 }
 
 #if DEBUG
 struct Journal_Previews : PreviewProvider {
     static var previews: some View {
-        Journal()
+        Journal(words: [])
     }
 }
 #endif
