@@ -36,7 +36,10 @@ struct SubmitButton : View {
             self.successWords = successes
             self.failedWords = failures
             addToFireStore(words: words)
-            getFromFireStore()
+            
+            let wordsFetched = getFromFireStore()
+            print(wordsFetched)//getFromFireStore()
+            
             self.showingAlert = true
             self.wordInput = ""
         }) {

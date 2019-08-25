@@ -29,7 +29,7 @@
 		6BC8AD3422E5059B00DD15A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8AD3322E5059B00DD15A3 /* AppDelegate.swift */; };
 		6BC8AD3622E5059B00DD15A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC8AD3522E5059B00DD15A3 /* SceneDelegate.swift */; };
 		6BC8AD3D22E5059C00DD15A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC8AD3C22E5059C00DD15A3 /* Preview Assets.xcassets */; };
-		6BDE6F4F230D014D0095CB8A /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BDE6F4E230D014D0095CB8A /* Logo.png */; };
+		6BD9E2C52312213400AB36C7 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BD9E2C42312213400AB36C7 /* Logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +68,7 @@
 		6BC8AD3C22E5059C00DD15A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6BC8AD4122E5059C00DD15A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BC8AD4622E5059D00DD15A3 /* Fluent Vocab TrainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fluent Vocab TrainerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6BDE6F4E230D014D0095CB8A /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Logo.png; path = "Fluent Vocab Trainer/Supplemental Files/Assets.xcassets/Logo.imageset/Logo.png"; sourceTree = SOURCE_ROOT; };
+		6BD9E2C42312213400AB36C7 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		A5A4690426C99C7B81F63D96 /* Pods-Fluent Vocab Trainer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fluent Vocab Trainer.debug.xcconfig"; path = "Target Support Files/Pods-Fluent Vocab Trainer/Pods-Fluent Vocab Trainer.debug.xcconfig"; sourceTree = "<group>"; };
 		B058B830AE6B8268E144F322 /* Pods_Fluent_Vocab_Trainer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fluent_Vocab_Trainer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -206,7 +206,7 @@
 		6BC8AD5522E505A300DD15A3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6BDE6F4E230D014D0095CB8A /* Logo.png */,
+				6BD9E2C42312213400AB36C7 /* Logo.png */,
 				6B182B5122ECE626009BF84B /* Extensions */,
 				6B61BE7322E50F4100583EA8 /* Config */,
 			);
@@ -314,9 +314,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BDE6F4F230D014D0095CB8A /* Logo.png in Resources */,
 				6BC8AD3D22E5059C00DD15A3 /* Preview Assets.xcassets in Resources */,
 				6B11BBC0230B8AA4006EB482 /* Assets.xcassets in Resources */,
+				6BD9E2C52312213400AB36C7 /* Logo.png in Resources */,
 				6B67D8C522F953890057D531 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

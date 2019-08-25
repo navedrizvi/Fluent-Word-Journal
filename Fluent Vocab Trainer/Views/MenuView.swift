@@ -21,7 +21,7 @@ struct MenuView : View {
                                 Text("Add")
                             }
                     }.tag(0)
-                    Journal(words: <#[Word]#>)
+                    Journal()
                         .tabItem {
                             VStack {
                                 Image(systemName: "book.fill")

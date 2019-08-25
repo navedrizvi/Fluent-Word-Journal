@@ -23,7 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
 //            window.rootViewController = UIHostingController(rootView: AddWordsResults())
-            window.rootViewController = UIHostingController(rootView: AuthenticationView().environmentObject(SessionStore()))
+            window.rootViewController = UIHostingController(rootView: AuthenticationView()
+                .environmentObject(SessionStore())
+                .environmentObject(WordService()))
             self.window = window
             window.makeKeyAndVisible()
         }

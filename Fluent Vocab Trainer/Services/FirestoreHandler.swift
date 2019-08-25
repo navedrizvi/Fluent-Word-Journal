@@ -20,7 +20,7 @@ func addToFireStore(words: [Word]) {
     ref = Database.database().reference()
     let user = Auth.auth().currentUser
     
-    var uid:String = ""
+    var uid = ""
     if let user = user {
         uid = user.uid
     }
@@ -54,34 +54,120 @@ func addToFireStore(words: [Word]) {
 }
 
 func getFromFireStore() -> [Word]? {
-    ref = Database.database().reference()
     let user = Auth.auth().currentUser
     var uid:String = ""
     if let user = user {
         uid = user.uid
     }
+    
     var words = [Word]()
+
+//    ref = Database.database().reference()
+//    let docRef = db.collection("words").document(uid)
+//
+//    docRef.getDocument { (document, error) in
+//        if let document = document, document.exists {
+//            guard let data = document.data() else { return }
+//            let rawData = data["words"] as? [[String:[String]]]
+//            for datum in rawData! {
+//                let word = dataToWord(rawData: datum)
+////                words.append(word)
+////                let words = document.children.flatMap { WordSnapshot(snapshot: $0 as! WordSnapshot)  }
+//                print(word.title)
+//            }
+//        } else {
+//            print("Document does not exist")
+//        }
+//    }
+//
+////    words = wordsClosure()
+//
+//    if words.isEmpty {
+//        print("Could not find words")
+//        return nil
+//    } else {
+//        return words
+//    }
+//
     ref = Database.database().reference()
     let docRef = db.collection("words").document(uid)
 
     docRef.getDocument { (document, error) in
-        if let document = document, document.exists {
-            guard let data = document.data() else { return }
-            let rawData = data["words"] as? [[String:[String]]]
-            for datum in rawData! {
-                let word = dataToWord(rawData: datum)
-                words.append(word)
-            }
-        } else {
-            print("Document does not exist")
-        }
+//        guard error == nil, let doc = document, doc.exists == true else {
+//          return
+//        }
+
+//        if let word = document.flatMap({
+//            $0.data().flatMap({ (data) in
+//                return Word(from: data)
+//            }
+//        )
+//          $0.data().flatMap({ (data) in
+//            return WordSnapshot(snapshot: data)
+//          })
+//        }) {
+//            print("Word: \(word)")
+//        } else {
+//            print("Document does not exist")
+//        }
+
+//        guard let data = document?.data() else { return }
+//        let rawData = data["words"] as? [[String:[String]]]
+        
+        
+        guard let wordsFetched = document.flatMap({
+          $0.data()?["words"].flatMap({ (data) in
+            return WordsSnapshot(dictArray: data as! [[String:[String]]])
+          })
+        }) else {return}
+//        {
+//            print("Word: \(wordsFetched.title)")
+//        } else {
+//            print("Document does not exist")
+//        }
+        print(wordsFetched)
+//        words = r
+        
+        
+//        let rawData = document?.data()?["words"] as? [String:[String]]
+////        let wordsFetched = document?.data()?["words"].flatMap { WordSnapshot(snapshot: $0 as! DocumentSnapshot)}
+//
+//        let wordsFetched = rawData.flatMap { WordSnapshot(snapshot: $0)}
+//
+//        print(wordsFetched)
     }
-    
-    if words.isEmpty {
-        return nil
-    } else {
-        return words
-    }
+//        do {
+////            let wordDocs = try JSONDecoder().decode([Response].self, from: doc)
+////            DispatchQueue.main.async {
+////                self.wordDocs = wordDocs
+////            }
+//
+//            if let file = URL(string: urlStr) {
+//                let data = try Data(contentsOf: file)
+//                let model = try JSONDecoder().decode([Word].self, from:
+//                    data)
+//                words = model
+//            }
+//
+//
+//        } catch let jsonErr{
+//            print("error: ", jsonErr)
+//        }
+//    }
+//
+//        let decoder = JSONDecoder()
+//        var dict = doc.data()
+//        for key, value in dict! {
+//
+//            }
+//        if let data = try?  JSONSerialization.data(withJSONObject: dict!, options: []) {
+//            let model = try? decoder.decode([Word].self, from: data)
+//                words = model!
+//
+////          completion(words)
+//    }
+//    }
+    return words
 }
 
 //helper
@@ -98,16 +184,18 @@ func dataToWord(rawData: [String: [String]]) -> Word {
     return word
 }
 
-//class WordStore: ObservableObject {
-////    let objectWillChange = ObservableObjectPublisher()
-////    var words: [Word] = [] {
-////        willSet {
-////            self.objectWillChange.send()
-////        }
-////    }
-//    @Published var words: [Word] = []
-//    func fetch() {
-//        guard let words = getFromFireStore() else {return}
-//        self.words = words
+class WordService: ObservableObject {
+//    let objectWillChange = ObservableObjectPublisher()
+//    var words: [Word] = [] {
+//        willSet {
+//            self.objectWillChange.send()
+//        }
 //    }
-//}
+    @Published var words: [Word] = []
+    func fetch() {
+        guard let wordsFetched = getFromFireStore() else {return}
+        print(wordsFetched)
+        self.words = wordsFetched
+    }
+}
+
