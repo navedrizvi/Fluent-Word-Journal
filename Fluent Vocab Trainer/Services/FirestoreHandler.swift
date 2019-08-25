@@ -61,64 +61,21 @@ func getFromFireStore() -> [Word]? {
     }
     
     var words = [Word]()
-
+    
     ref = Database.database().reference()
     let docRef = db.collection("words").document(uid)
 
     docRef.getDocument { (document, error) in
-
         guard let wordsFetched = document.flatMap({
           $0.data()?["words"].flatMap({ (data) in
             return WordsSnapshot(dictArray: data as! [[String:[String]]])
           })
         }) else {return}
-//        {
-//            print("Word: \(wordsFetched.title)")
-//        } else {
-//            print("Document does not exist")
-//        }
-        print(wordsFetched.words[0].title)
-//        words = r
-        
-        
-//        let rawData = document?.data()?["words"] as? [String:[String]]
-////        let wordsFetched = document?.data()?["words"].flatMap { WordSnapshot(snapshot: $0 as! DocumentSnapshot)}
-//
-//        let wordsFetched = rawData.flatMap { WordSnapshot(snapshot: $0)}
-//
-//        print(wordsFetched)
+        words = wordsFetched.words
+        print(words[0].title)
     }
-//        do {
-////            let wordDocs = try JSONDecoder().decode([Response].self, from: doc)
-////            DispatchQueue.main.async {
-////                self.wordDocs = wordDocs
-////            }
-//
-//            if let file = URL(string: urlStr) {
-//                let data = try Data(contentsOf: file)
-//                let model = try JSONDecoder().decode([Word].self, from:
-//                    data)
-//                words = model
-//            }
-//
-//
-//        } catch let jsonErr{
-//            print("error: ", jsonErr)
-//        }
-//    }
-//
-//        let decoder = JSONDecoder()
-//        var dict = doc.data()
-//        for key, value in dict! {
-//
-//            }
-//        if let data = try?  JSONSerialization.data(withJSONObject: dict!, options: []) {
-//            let model = try? decoder.decode([Word].self, from: data)
-//                words = model!
-//
-////          completion(words)
-//    }
-//    }
+//    print(words[0].title)
+    
     return words
 }
 

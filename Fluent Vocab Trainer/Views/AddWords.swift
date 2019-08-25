@@ -7,7 +7,6 @@
 //
 import UIKit
 import SwiftUI
-import Firebase
 
 struct AddWords : View {
     
@@ -18,11 +17,10 @@ struct AddWords : View {
             VStack {
                 TextField("Enter words...", text: $wordInput)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                SubmitButton(wordInput: $wordInput) //passing the input state on submit
+                SubmitButton(wordInput: $wordInput)//passing the input state on submit
             }
         }.navigationBarTitle("Results")
     }
-    
 }
 
 struct SubmitButton : View {
@@ -30,16 +28,13 @@ struct SubmitButton : View {
     @State var showingAlert = false
     @State var successWords = [String]()
     @State var failedWords = [String]()
+        
     var body: some View {
         Button(action: {
             let (words, successes, failures) = makeWords(userInput: self.wordInput)
             self.successWords = successes
             self.failedWords = failures
             addToFireStore(words: words)
-            
-            let wordsFetched = getFromFireStore()
-            print(wordsFetched)//getFromFireStore()
-            
             self.showingAlert = true
             self.wordInput = ""
         }) {

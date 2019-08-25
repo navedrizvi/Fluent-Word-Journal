@@ -14,7 +14,7 @@ struct MenuView : View {
         VStack {
             TopBar()
                 TabView {
-                    AddWords()
+                    AddWords().environmentObject(WordService())
                         .tabItem {
                             VStack {
                                 Image(systemName: "plus.circle.fill")

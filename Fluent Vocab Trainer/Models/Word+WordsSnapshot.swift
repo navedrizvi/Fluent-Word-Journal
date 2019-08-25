@@ -57,47 +57,6 @@ class Word: Codable, Identifiable {
     
 }
 
-//struct WordSnapshot {
-//    let title: String
-//    let wordnikUrl: String
-//    var definitions: [String]
-//    var partsOfSpeech: [String]
-//    var examples: [String]
-//    var dateAdded: String
-//
-//    init?(snapshot: DocumentSnapshot) {
-////        guard let data = snapshot as? [String:[String]],
-////        let title = data["title"]?[0],
-////        let wordnikUrl = data["wordnikUrl"]?[0],
-////        let definitions = data["definitions"],
-////        let partsOfSpeech = data["partsOfSpeech"],
-////        let examples = data["examples"],
-////        let dateAdded = data["dateAdded"]?[0]
-////        else {return nil}
-////        guard let data = snapshot as? [[String:[String]]],
-//        guard let data = snapshot.data() as? [String:[String]],
-//            let title = data["title"]?[0],
-//            let wordnikUrl = data["wordnikUrl"]?[0],
-//            let definitions = data["definitions"],
-//            let partsOfSpeech = data["partsOfSpeech"],
-//            let examples = data["examples"],
-//            let dateAdded = data["dateAdded"]?[0]
-//            else {return nil}
-////        let rawData = data["words"] as? [[String:[String]]]
-////        guard let dic = snapshot.value as? [String:Any],
-////              let title = dic["title"] as? String,
-////              let desc = dic["description"] as? String else {
-////            return nil
-////        }
-//        self.title = title
-//        self.wordnikUrl = wordnikUrl
-//        self.definitions = definitions
-//        self.partsOfSpeech = partsOfSpeech
-//        self.examples = examples
-//        self.dateAdded = dateAdded
-//    }
-//}
-
 struct WordsSnapshot {
     var words = [Word]()
     

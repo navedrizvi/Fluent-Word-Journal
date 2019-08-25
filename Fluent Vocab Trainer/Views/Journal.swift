@@ -8,31 +8,42 @@
 
 import SwiftUI
 import Combine
+import Firebase
 
 struct Journal : View {
-    @EnvironmentObject var wordStore: WordService
-//    @ObservedObject var wordStore: WordStore
-//
-//    @State public var words: [Word]
-    
+    @EnvironmentObject var wordService: WordService
+
     var body: some View {
         NavigationView {
-            List (wordStore.words) { word in
+            List (wordService.words) { word in
                 Text(word.title)
             }
         }.onAppear {
-            self.fetch()
-        }//(perform: fetch)
+            self.getFromFireStore()
+        }
+    .navigationBarTitle("My Words")
+    }
+
+    private func getFromFireStore() {
+        let user = Auth.auth().currentUser
+        var uid:String = ""
+        if let user = user {
+            uid = user.uid
+        }
+        
+        ref = Database.database().reference()
+        let docRef = db.collection("words").document(uid)
+
+        docRef.getDocument { (document, error) in
+            guard let wordsFetched = document.flatMap({
+              $0.data()?["words"].flatMap({ (data) in
+                return WordsSnapshot(dictArray: data as! [[String:[String]]])
+              })
+            }) else {return}
+            self.wordService.words = wordsFetched.words
+        }
     }
     
-    private func fetch() {
-//        guard let wordStore = getFromFireStore() else {return}
-//        print(wordStore)
-//        self.wordStore = wordStore
-        guard let words = getFromFireStore() else {return}
-        print(words)
-        wordStore.fetch()
-    }
 }
 
 #if DEBUG
