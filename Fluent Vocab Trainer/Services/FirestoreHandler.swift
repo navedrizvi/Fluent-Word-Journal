@@ -62,59 +62,11 @@ func getFromFireStore() -> [Word]? {
     
     var words = [Word]()
 
-//    ref = Database.database().reference()
-//    let docRef = db.collection("words").document(uid)
-//
-//    docRef.getDocument { (document, error) in
-//        if let document = document, document.exists {
-//            guard let data = document.data() else { return }
-//            let rawData = data["words"] as? [[String:[String]]]
-//            for datum in rawData! {
-//                let word = dataToWord(rawData: datum)
-////                words.append(word)
-////                let words = document.children.flatMap { WordSnapshot(snapshot: $0 as! WordSnapshot)  }
-//                print(word.title)
-//            }
-//        } else {
-//            print("Document does not exist")
-//        }
-//    }
-//
-////    words = wordsClosure()
-//
-//    if words.isEmpty {
-//        print("Could not find words")
-//        return nil
-//    } else {
-//        return words
-//    }
-//
     ref = Database.database().reference()
     let docRef = db.collection("words").document(uid)
 
     docRef.getDocument { (document, error) in
-//        guard error == nil, let doc = document, doc.exists == true else {
-//          return
-//        }
 
-//        if let word = document.flatMap({
-//            $0.data().flatMap({ (data) in
-//                return Word(from: data)
-//            }
-//        )
-//          $0.data().flatMap({ (data) in
-//            return WordSnapshot(snapshot: data)
-//          })
-//        }) {
-//            print("Word: \(word)")
-//        } else {
-//            print("Document does not exist")
-//        }
-
-//        guard let data = document?.data() else { return }
-//        let rawData = data["words"] as? [[String:[String]]]
-        
-        
         guard let wordsFetched = document.flatMap({
           $0.data()?["words"].flatMap({ (data) in
             return WordsSnapshot(dictArray: data as! [[String:[String]]])
@@ -125,7 +77,7 @@ func getFromFireStore() -> [Word]? {
 //        } else {
 //            print("Document does not exist")
 //        }
-        print(wordsFetched)
+        print(wordsFetched.words[0].title)
 //        words = r
         
         

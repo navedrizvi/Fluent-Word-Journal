@@ -99,38 +99,12 @@ class Word: Codable, Identifiable {
 //}
 
 struct WordsSnapshot {
-    var title = [String]()
-    var wordnikUrl = [String]()
-    var definitions = [[String]]()
-    var partsOfSpeech = [[String]]()
-    var examples = [[String]]()
-    var dateAdded = [String]()
+    var words = [Word]()
     
     init?(dictArray: [[String:[String]]]) {
         //mapping each word
         for word in dictArray {
-            title.append(word["title"]![0])
-            wordnikUrl.append(word["wordnikUrl"]![0])
-            definitions.append(word["definitions"]!)
-            partsOfSpeech.append(word["partsOfSpeech"]!)
-            examples.append(word["examples"]!)
-            dateAdded.append(word["dateAdded"]![0])
-            
+            words.append(Word(title: word["title"]![0], url: word["wordnikUrl"]![0], fiveDefinitions: word["definitions"]!, partsOfSpeech: word["partsOfSpeech"]!, examples: word["examples"]!, date: word["dateAdded"]![0]))
         }
-        
-//        guard let title = dictionary["title"]?[0],
-//            let wordnikUrl = dictionary["wordnikUrl"]?[0],
-//            let definitions = dictionary["definitions"],
-//            let partsOfSpeech = dictionary["partsOfSpeech"],
-//            let examples = dictionary["examples"],
-//            let dateAdded = dictionary["dateAdded"]?[0]
-//            else {return nil}
-
-//        self.title = title
-//        self.wordnikUrl = wordnikUrl
-//        self.definitions = definitions
-//        self.partsOfSpeech = partsOfSpeech
-//        self.examples = examples
-//        self.dateAdded = dateAdded
     }
 }
