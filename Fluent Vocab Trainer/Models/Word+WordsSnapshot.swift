@@ -12,6 +12,7 @@ import SwiftyJSON
 import Firebase
 
 class Word: Codable, Identifiable {
+    
     var id = UUID()
     var title: String
     var wordnikUrl: String

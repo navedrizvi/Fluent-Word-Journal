@@ -12,7 +12,7 @@ struct MenuView : View {
     
     var body: some View {
         VStack {
-            TopBar()
+//            TopBar()
                 TabView {
                     AddWords().environmentObject(WordService())
                         .tabItem {

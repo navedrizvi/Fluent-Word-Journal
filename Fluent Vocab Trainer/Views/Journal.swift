@@ -12,18 +12,52 @@ import Firebase
 
 struct Journal : View {
     @EnvironmentObject var wordService: WordService
-
+    @State private var searchQuery: String = ""
+    @State private var isLoading = true
     var body: some View {
-        NavigationView {
-            List (wordService.words) { word in
-                Text(word.title)
+        LoadingView(isShowing: .constant(isLoading)) {
+            NavigationView {
+                List {
+                    Section(header: SearchBar(text: self.$searchQuery)) {
+                        ForEach ((self.wordService.words).filter {
+                            self.searchQuery.isEmpty ?
+                            true :
+                                "\($0.title)".contains(self.searchQuery)
+                    }) { word in
+                        NavigationLink(destination: WordDetail(word: word)) {
+                            Text(word.title)
+                        }
+                    }
+                        .onDelete(perform: self.delete)
+                        .onMove(perform: self.move)
+                    }
+                        
+
+                }
+                .navigationBarItems(trailing: EditButton())
+                .navigationBarTitle("My Words")
+            }.onAppear {
+                self.getFromFireStore()
             }
-        }.onAppear {
-            self.getFromFireStore()
         }
-    .navigationBarTitle("My Words")
+
     }
 
+    private func delete(at offsets: IndexSet) {
+        deleteFromFirestore(at: offsets)
+        wordService.words.remove(atOffsets:offsets)
+    }
+    
+    private func deleteFromFirestore(at offsets: IndexSet) {
+//        for index in offsets {
+//            let word
+//        }
+    }
+    
+    private func move(from source: IndexSet, to destination: Int) {
+        wordService.words.move(fromOffsets: source, toOffset: destination)
+    }
+    
     private func getFromFireStore() {
         let user = Auth.auth().currentUser
         var uid:String = ""
@@ -41,6 +75,7 @@ struct Journal : View {
               })
             }) else {return}
             self.wordService.words = wordsFetched.words
+            self.isLoading = false
         }
     }
     
