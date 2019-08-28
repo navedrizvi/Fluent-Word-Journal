@@ -24,7 +24,7 @@ func addToFireStore(words: [Word]) {
     if let user = user {
         uid = user.uid
     }
-
+    
     let docRef = db.collection("words").document(uid)
     
     //Convert words to string dictionary and stores in firebase
@@ -33,19 +33,24 @@ func addToFireStore(words: [Word]) {
     docRef.getDocument(completion: { (document, error) in
         if let document = document {
             if document.exists{
-                docRef.updateData(["words":FieldValue.arrayUnion(words)]){ err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document updated with ID: \(uid)")
+                for word in words {
+                    docRef.updateData([word["id"]![0]: word]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document updated with ID: \(uid)")
+                        }
                     }
                 }
-            } else {
-                docRef.setData([ "words": words], merge: true) { err in
-                    if let err = err {
-                        print("Error setting document: \(err)")
-                    } else {
-                        print("Document set with ID: \(uid)")
+            }
+            else {
+                for word in words {
+                    docRef.updateData([word["id"]![0]: word]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document updated with ID: \(uid)")
+                        }
                     }
                 }
             }
@@ -64,17 +69,17 @@ func getFromFireStore() -> [Word]? {
     
     ref = Database.database().reference()
     let docRef = db.collection("words").document(uid)
-
+    
     docRef.getDocument { (document, error) in
         guard let wordsFetched = document.flatMap({
-          $0.data()?["words"].flatMap({ (data) in
-            return WordsSnapshot(dictArray: data as! [[String:[String]]])
-          })
+            $0.data()?["words"].flatMap({ (data) in
+                return WordsSnapshot(dictArray: data as! [[String:[String]]])
+            })
         }) else {return}
         words = wordsFetched.words
         print(words[0].title)
     }
-//    print(words[0].title)
+    //    print(words[0].title)
     
     return words
 }
@@ -94,12 +99,12 @@ func dataToWord(rawData: [String: [String]]) -> Word {
 }
 
 class WordService: ObservableObject {
-//    let objectWillChange = ObservableObjectPublisher()
-//    var words: [Word] = [] {
-//        willSet {
-//            self.objectWillChange.send()
-//        }
-//    }
+    //    let objectWillChange = ObservableObjectPublisher()
+    //    var words: [Word] = [] {
+    //        willSet {
+    //            self.objectWillChange.send()
+    //        }
+    //    }
     @Published var words: [Word] = []
     func fetch() {
         guard let wordsFetched = getFromFireStore() else {return}

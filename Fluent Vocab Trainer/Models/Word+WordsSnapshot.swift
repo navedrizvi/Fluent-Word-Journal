@@ -46,6 +46,7 @@ class Word: Codable, Identifiable {
     
     public func toDict() -> [String:[String]] {
         var dict: [String: [String]] = [:]
+        dict["id"] = [self.id.uuidString]
         dict["title"] = [self.title]
         dict["wordnikUrl"] = [self.wordnikUrl]
         dict["definitions"] = self.definitions

@@ -51,8 +51,8 @@ struct WordDetail: View {
             }) {
                 Text(word.wordnikUrl)
                     .underline()
-                    .padding(.bottom)
                     .foregroundColor(Color.blue)
+                    .padding(.bottom)
             }
 
         }
