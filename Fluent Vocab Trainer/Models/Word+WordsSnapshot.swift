@@ -56,16 +56,12 @@ class Word: Codable, Identifiable {
         
         return dict
     }
-    
+
 }
 
-struct WordsSnapshot {
-    var words = [Word]()
-    
-    init?(dictArray: [[String:[String]]]) {
-        //mapping each word
-        for word in dictArray {
-            words.append(Word(title: word["title"]![0], url: word["wordnikUrl"]![0], fiveDefinitions: word["definitions"]!, partsOfSpeech: word["partsOfSpeech"]!, examples: word["examples"]!, date: word["dateAdded"]![0]))
-        }
+struct WordSnapshot {
+    var word: Word
+    init?(key: String, value: [String:[String]]) {
+        self.word = Word(title: value["title"]![0], url: value["wordnikUrl"]![0], fiveDefinitions: value["definitions"]!, partsOfSpeech: value["partsOfSpeech"]!, examples: value["examples"]!, date: value["dateAdded"]![0])
     }
 }

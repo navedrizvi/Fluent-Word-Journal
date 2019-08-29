@@ -58,30 +58,42 @@ func addToFireStore(words: [Word]) {
     })
 }
 
-func getFromFireStore() -> [Word]? {
-    let user = Auth.auth().currentUser
-    var uid:String = ""
-    if let user = user {
-        uid = user.uid
+
+
+class WordService: ObservableObject {
+    @Published var words: [Word] = []
+    
+    public func fetch(completion: @escaping () -> ()) {
+        self.getFromFireStore(completion: completion)
     }
     
-    var words = [Word]()
-    
-    ref = Database.database().reference()
-    let docRef = db.collection("words").document(uid)
-    
-    docRef.getDocument { (document, error) in
-        guard let wordsFetched = document.flatMap({
-            $0.data()?["words"].flatMap({ (data) in
-                return WordsSnapshot(dictArray: data as! [[String:[String]]])
-            })
-        }) else {return}
-        words = wordsFetched.words
-        print(words[0].title)
+    private func getFromFireStore(completion: @escaping () -> ()) {
+        let user = Auth.auth().currentUser
+        var uid:String = ""
+        if let user = user {
+            uid = user.uid
+        }
+        
+        var wordsStored = [Word]()
+        
+        ref = Database.database().reference()
+        let docRef = db.collection("words").document(uid)
+        
+        docRef.getDocument { (document, error) in
+            guard let wordsFetched = document.flatMap({
+                $0.data().flatMap { (doc) in
+                    doc.compactMap({ (dict) in
+                        return WordSnapshot(key: dict.key, value: dict.value as! [String:[String]])
+                    })
+                }
+            }) else {return}
+            for each in wordsFetched {
+                wordsStored.append(each.word)
+            }
+            self.words = wordsStored
+            completion()
+        }
     }
-    //    print(words[0].title)
-    
-    return words
 }
 
 //helper
@@ -97,19 +109,3 @@ func dataToWord(rawData: [String: [String]]) -> Word {
     
     return word
 }
-
-class WordService: ObservableObject {
-    //    let objectWillChange = ObservableObjectPublisher()
-    //    var words: [Word] = [] {
-    //        willSet {
-    //            self.objectWillChange.send()
-    //        }
-    //    }
-    @Published var words: [Word] = []
-    func fetch() {
-        guard let wordsFetched = getFromFireStore() else {return}
-        print(wordsFetched)
-        self.words = wordsFetched
-    }
-}
-

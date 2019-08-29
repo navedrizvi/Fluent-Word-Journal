@@ -28,7 +28,7 @@ struct Journal : View {
                                 Text(word.title)
                             }
                         }
-                        .onDelete(perform: self.delete)
+                        .onDelete(perform: self.deleteWord)
                         .onMove(perform: self.move)
                     }
                 }
@@ -41,7 +41,7 @@ struct Journal : View {
         
     }
     
-    private func delete(at offsets: IndexSet) {
+    private func deleteWord(at offsets: IndexSet) {
         deleteFromFirestore(at: offsets)
         wordService.words.remove(atOffsets:offsets)
     }
@@ -59,14 +59,20 @@ struct Journal : View {
         let input = offsets.map { self.wordService.words[$0] }
         //Convert words to string dictionary to remove from firebase
         let word = input[0].toDict()
-        docRef.updateData(["words": FieldValue.arrayUnion([word])]){ err in
+//        docRef.updateData(["words": FieldValue.arrayUnion([word])]){ err in
+//            if let err = err {
+//                print("Error updating document: \(err)")
+//            } else {
+//                print("Document updated with ID: \(uid)")
+//            }
+//        }
+        docRef.updateData([word["id"]: FieldValue.delete()]){ err in
             if let err = err {
-                print("Error updating document: \(err)")
+                print("Error deleting document: \(err)")
             } else {
-                print("Document updated with ID: \(uid)")
+                print("Document deleting with ID: \(uid)")
             }
         }
-
         
     }
     
@@ -75,22 +81,7 @@ struct Journal : View {
     }
     
     private func getFromFireStore() {
-        let user = Auth.auth().currentUser
-        var uid:String = ""
-        if let user = user {
-            uid = user.uid
-        }
-        
-        ref = Database.database().reference()
-        let docRef = db.collection("words").document(uid)
-        
-        docRef.getDocument { (document, error) in
-            guard let wordsFetched = document.flatMap({
-                $0.data()?["words"].flatMap({ (data) in
-                    return WordsSnapshot(dictArray: data as! [[String:[String]]])
-                })
-            }) else {return}
-            self.wordService.words = wordsFetched.words
+        self.wordService.fetch() {
             self.isLoading = false
         }
     }
