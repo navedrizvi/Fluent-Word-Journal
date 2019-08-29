@@ -34,7 +34,7 @@ func addToFireStore(words: [Word]) {
         if let document = document {
             if document.exists{
                 for word in words {
-                    docRef.updateData([word["id"]![0]: word]) { err in
+                    docRef.updateData([word["title"]![0]: word]) { err in
                         if let err = err {
                             print("Error updating document: \(err)")
                         } else {
@@ -45,7 +45,7 @@ func addToFireStore(words: [Word]) {
             }
             else {
                 for word in words {
-                    docRef.updateData([word["id"]![0]: word]) { err in
+                    docRef.setData([word["title"]![0]: word]) { err in
                         if let err = err {
                             print("Error updating document: \(err)")
                         } else {

@@ -57,16 +57,11 @@ struct Journal : View {
         let docRef = db.collection("words").document(uid)
         
         let input = offsets.map { self.wordService.words[$0] }
+        
         //Convert words to string dictionary to remove from firebase
         let word = input[0].toDict()
-//        docRef.updateData(["words": FieldValue.arrayUnion([word])]){ err in
-//            if let err = err {
-//                print("Error updating document: \(err)")
-//            } else {
-//                print("Document updated with ID: \(uid)")
-//            }
-//        }
-        docRef.updateData([word["id"]: FieldValue.delete()]){ err in
+
+        docRef.updateData([word["title"]![0]: FieldValue.delete(),]){ err in
             if let err = err {
                 print("Error deleting document: \(err)")
             } else {
