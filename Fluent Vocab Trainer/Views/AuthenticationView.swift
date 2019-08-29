@@ -42,7 +42,6 @@ struct LoginView: View {
     @State var password = ""
     @State var loading = false
     @State var error = false
-    //    @State var signInSuccess = false
     @Binding var signInSuccess: Bool
     private func signIn() {
         loading = true
@@ -73,6 +72,7 @@ struct LoginView: View {
                 TextField("Email", text: $email) {
                     UIApplication.shared.keyWindow?.endEditing(true)
                     }
+                    .autocapitalization(.none)
                     .foregroundColor(Color.black)
                     .padding()
                     .background(lightGreyColor)

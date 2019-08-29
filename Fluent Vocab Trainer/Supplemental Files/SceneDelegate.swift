@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -23,9 +24,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
 //            window.rootViewController = UIHostingController(rootView: AddWordsResults())
-            window.rootViewController = UIHostingController(rootView: AuthenticationView()
-                .environmentObject(SessionStore())
-                .environmentObject(WordService()))
+            if Auth.auth().currentUser != nil {
+                window.rootViewController = UIHostingController(rootView: MenuView()
+                    .environmentObject(SessionStore())
+                    .environmentObject(WordService()))
+            } else {
+                window.rootViewController = UIHostingController(rootView: AuthenticationView()
+                    .environmentObject(SessionStore())
+                    .environmentObject(WordService()))
+            }
             self.window = window
             window.makeKeyAndVisible()
         }

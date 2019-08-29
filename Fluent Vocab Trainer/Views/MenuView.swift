@@ -28,11 +28,11 @@ struct MenuView : View {
                                 Text("Journal")
                             }
                     }.tag(1)
-                    UserProgress()
+                    UserAccount()
                         .tabItem {
                             VStack {
                                 Image(systemName: "person.fill")
-                                Text("Progress")
+                                Text("Account")
                             }
                     }.tag(2)
                 }

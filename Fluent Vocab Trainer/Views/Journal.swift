@@ -15,6 +15,7 @@ struct Journal : View {
     @State private var searchQuery: String = ""
     @State private var isLoading = true
     var body: some View {
+        
         LoadingView(isShowing: .constant(isLoading)) {
             NavigationView {
                 List {
@@ -38,7 +39,6 @@ struct Journal : View {
                 self.getFromFireStore()
             }
         }
-        
     }
     
     private func deleteWord(at offsets: IndexSet) {
@@ -60,7 +60,7 @@ struct Journal : View {
         
         //Convert words to string dictionary to remove from firebase
         let word = input[0].toDict()
-
+        
         docRef.updateData([word["title"]![0]: FieldValue.delete(),]){ err in
             if let err = err {
                 print("Error deleting document: \(err)")

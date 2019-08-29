@@ -15,9 +15,21 @@ struct AddWords : View {
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Enter words...", text: $wordInput)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                GeometryReader { geometry in
+                           ScrollView {
+                            TextField("Enter words here...", text: self.$wordInput)
+                                   .lineLimit(nil)
+                                .frame(width: geometry.size.width, height: geometry.size.height-6)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                           }
+                       }
+//                Try9()
+//                Spacer()
+//                TextField("Enter words...", text: $wordInput)
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//                Spacer()
                 SubmitButton(wordInput: $wordInput)//passing the input state on submit
+                    .padding(.bottom)
             }
         }.navigationBarTitle("Results")
     }

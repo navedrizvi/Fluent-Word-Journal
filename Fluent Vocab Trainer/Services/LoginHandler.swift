@@ -14,7 +14,7 @@ class SessionStore : ObservableObject {
     var session: User? { didSet { self.didChange.send(self) }}
     var handle: AuthStateDidChangeListenerHandle?
     
-    func listen () {
+    public func listen () {
         
         // monitor authentication changes using firebase
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
@@ -32,7 +32,7 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func signUp(
+    public func signUp(
         email: String,
         password: String,
         handler: @escaping AuthDataResultCallback
@@ -40,7 +40,7 @@ class SessionStore : ObservableObject {
         Auth.auth().createUser(withEmail: email, password: password, completion: handler)
     }
     
-    func signIn(
+    public func signIn(
         email: String,
         password: String,
         handler: @escaping AuthDataResultCallback
@@ -48,17 +48,27 @@ class SessionStore : ObservableObject {
         Auth.auth().signIn(withEmail: email, password: password, completion: handler)
     }
     
-    func signOut () -> Bool {
+//    func signOut () -> Bool {
+//        do {
+//            try Auth.auth().signOut()
+//            self.session = nil
+//            return true
+//        } catch {
+//            return false
+//        }
+//    }
+    public func signOut () -> Void {
         do {
             try Auth.auth().signOut()
             self.session = nil
-            return true
+//            return true
         } catch {
-            return false
+            print("error signing in")
+//            return false
         }
     }
     
-    func unbind () {
+    public func unbind () {
         if let handle = handle {
             Auth.auth().removeStateDidChangeListener(handle)
         }

@@ -58,8 +58,6 @@ func addToFireStore(words: [Word]) {
     })
 }
 
-
-
 class WordService: ObservableObject {
     @Published var words: [Word] = []
     
