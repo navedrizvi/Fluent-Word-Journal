@@ -25,6 +25,6 @@ pod install
 - [Workdnik API](https://developer.wordnik.com) for word details
 - [Firebase](https://firebase.google.com) for user persistence
 
-![Sign-up page](https://github.com/navedrizvi/Fluent-Word-Journal/tree/master/Fluent%20Vocab%20Trainer/Resources/screenshots/1.png?raw=true 'Sign-up page')
+![Sign-up page](https://github.com/navedrizvi/Fluent-Word-Journal/blob/master/Fluent%20Vocab%20Trainer/Resources/screenshots/1.png?raw=true 'Sign-up page')
 
-![User Experience](https://github.com/navedrizvi/Fluent-Word-Journal/tree/master/Fluent%20Vocab%20Trainer/Resources/screenshots/ux.gif?raw=true 'User Experience')
+![User Experience](https://github.com/navedrizvi/Fluent-Word-Journal/blob/master/Fluent%20Vocab%20Trainer/Resources/screenshots/ux.gif?raw=true 'User Experience')
