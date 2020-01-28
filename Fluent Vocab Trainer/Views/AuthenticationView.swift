@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 let lightGreyColor = Color(red: 239.0/255.0, green: 243.0/255.0, blue: 244.0/255.0, opacity: 1.0)
 
@@ -30,6 +31,7 @@ struct AuthenticationView : View {
     }
 }
 
+//MARK: implement register
 //struct RegisterView: View {
 //
 //}
@@ -43,6 +45,7 @@ struct LoginView: View {
     @State var loading = false
     @State var error = false
     @Binding var signInSuccess: Bool
+    
     private func signIn() {
         loading = true
         error = false
@@ -99,12 +102,6 @@ struct LoginView: View {
                 }}
                 
                 .frame(width: 300, height: 60)
-            //MARK: Implement forgot password
-            //            NavigationLink(destination: SignUpView()) {
-            //                Text("Sign up.").font(.footnote)
-            //            }
-            //            Text("Forgot Password").foregroundColor(Color.white)
-            //                .underline()
             
         }
         .background(

@@ -16,7 +16,10 @@ struct UserAccount : View {
     
     var body: some View {
         NavigationView {
-            SignOutButton(label: "Sign out", action: session.signOut)
+            NavigationLink(destination: AuthenticationView()) {
+                SignOutButton(label: "Sign out", action: session.signOut)
+            }
+            
         }
     }
 }

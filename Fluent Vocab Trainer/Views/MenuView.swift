@@ -12,7 +12,6 @@ struct MenuView : View {
     
     var body: some View {
         VStack {
-//            TopBar()
                 TabView {
                     AddWords().environmentObject(WordService())
                         .tabItem {
@@ -38,7 +37,6 @@ struct MenuView : View {
                 }
                 .accentColor(Color.purple)
         }
-        
     }
 }
 

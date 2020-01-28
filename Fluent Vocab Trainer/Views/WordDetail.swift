@@ -21,9 +21,9 @@ struct WordDetail: View {
                 Text("Definitions: ").foregroundColor(Color.purple).padding(0.5)
                 ForEach(word.definitions, id: \.self) { definition in
                     Text("\u{2022} \(definition)")
-                        .lineLimit(2)
-//                        .lineLimit(nil)
-//                        .font(.body)
+                        .font(.body)
+                        .lineLimit(nil)
+
                 }
                 if (!word.examples.isEmpty){
                     Spacer()
@@ -36,13 +36,12 @@ struct WordDetail: View {
                 if (!word.partsOfSpeech.isEmpty){
                     Spacer()
                     Text("Part of speech as: ").foregroundColor(Color.purple).padding(0.5)
-                    //                .font(.bold)
                     ForEach(word.partsOfSpeech, id: \.self) { partOfSpeech in
                         Text(verbatim: partOfSpeech)
                     }
                 }
             }
-            .frame(width: 350)
+            .frame(width: 370)
             Spacer()
             Button(action: {
                 if let url = URL(string: self.word.wordnikUrl) {

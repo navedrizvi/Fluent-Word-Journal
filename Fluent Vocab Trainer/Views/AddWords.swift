@@ -23,11 +23,7 @@ struct AddWords : View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                            }
                        }
-//                Try9()
-//                Spacer()
-//                TextField("Enter words...", text: $wordInput)
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                Spacer()
+
                 SubmitButton(wordInput: $wordInput)//passing the input state on submit
                     .padding(.bottom)
             }
@@ -66,16 +62,16 @@ struct SubmitButton : View {
 }
 
 fileprivate func AlertMessage(wordsFound success:[String], wordsNotFound fail:[String]) -> Text {
-    var messageString = "\nSucessfully added:\n\n"
+    var messageString = "\nSucessfully added \(success.count) words:\n\n"
     for word in success {
         messageString += "\(word)\n"
     }
-    if !fail.isEmpty{
-        messageString += "\nCould not find:\n\n"
-        for word in fail {
-            messageString += "\(word)\n"
-        }
-    }
+//    if !fail.isEmpty{
+//        messageString += "\nCould not find:\n\n"
+//        for word in fail {
+//            messageString += "\(word)\n"
+//        }
+//    }
     
     return Text(messageString).fontWeight(.regular)
     
